@@ -5,6 +5,7 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/opt/nvidiaMQTT
+ExecStartPre=/bin/bash -c 'until nc -z 192.168.0.20 1883; do sleep 1; done' #MQTT IP server
 ExecStart=/bin/python3 nvidia-smi2ha.py
 Restart=always
 
