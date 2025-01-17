@@ -166,7 +166,28 @@ def publish_configs(client, gpu_info, headers, units):
         "dec": {"name": "Decoder Utilization", "unit": "%", "device_class": None},
         "mclk": {"name": "Memory Clock", "unit": "MHz", "device_class": "frequency"},
         "pclk": {"name": "Processor Clock", "unit": "MHz", "device_class": "frequency"},
+        "pviol":{"name": "Power Violation","device_class": None,"unit": None},
+        "tviol":{"name": "Thermal Violation","device_class": None,"unit": None, "device_description" : {"description": "Срабатывание ограничения по температуре"}},
+        "fb":{"name": "Frame Buffer","device_class": "data_size","unit": "MB"},
+        "bar1":{"name": "BAR1 Memory","device_class": "data_size","unit": "MB"},
+        "ccpm":{"name": "Compute Cluster Memory","device_class": "data_size","unit": "MB"},
+        "sbecc":{"name": "Single Bit ECC Errors","device_class": None,"unit": "errors"},
+        "dbecc":{"name": "Double Bit ECC Errors","device_class": None,"unit": "errors"},
+        "pci":{"name": "PCI Throughput","device_class": "data_rate","unit": "MB/s"},
+        "rxpci":{"name": "PCI Receive Throughput","device_class": "data_rate","unit": "MB/s"},
+        "txpci":{"name": "PCI Transmit Throughput","device_class": "data_rate","unit": "MB/s"}
     }
+
+# 1. tviol (Thermal Violation): Срабатывание ограничения по температуре.
+# 2. fb (Frame Buffer Usage): Использование видеопамяти.
+# 3. bar1 (BAR1 Memory Usage): Использование BAR1 памяти, используемой для взаимодействия CPU и GPU.
+# 4. ccpm (Compute Processes): Количество вычислительных процессов.
+# 5. sbecc (Single-Bit ECC Errors): Ошибки ECC (единичные).
+# 6. dbecc (Double-Bit ECC Errors): Ошибки ECC (двойные).
+# 7. pci (PCI Bandwidth): Общее использование PCI-шины.
+# 8. rxpci (PCI RX Bandwidth): Пропускная способность PCI (входящий трафик).
+# 9. txpci (PCI TX Bandwidth): Пропускная способность PCI (исходящий трафик).
+
 
     for gpu_id, info in gpu_info.items():
         gpu_uuid = info["uuid"]

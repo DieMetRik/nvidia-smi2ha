@@ -1,0 +1,12 @@
+[Unit]
+Description=NVidia SMI to Home Assistant MQTT
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/nvidiaMQTT
+ExecStart=/bin/python3 nvidia-smi2ha.py
+Restart=always
+
+[Install]
+WantedBy=default.target
